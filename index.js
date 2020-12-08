@@ -13,5 +13,5 @@ app.listen(4000, () => {
 })
 
 app.get('/', (request, response) => {
-    response.send("Funcionou")
+    response.send("Bem vendi a API de integração")
 })
