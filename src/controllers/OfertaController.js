@@ -20,7 +20,7 @@ class OfertaController{
 
         console.log(id)
 
-        database.select().table('oferta').where(`id`, id.id).join('estabelecimento', {'estabelecimento.id_estabelecimento': 'oferta.estabelecimento_id'}).then( data => {  
+        database.select().table('oferta').where('id', id.id).join('estabelecimento', {'estabelecimento.id_estabelecimento': 'oferta.estabelecimento_id'}).then( data => {  
 
             response.json(data)
 
