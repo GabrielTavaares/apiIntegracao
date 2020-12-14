@@ -16,15 +16,27 @@ class OfertaController{
     
     listaOfertaUnica(request, response){
             
-        const id = request.params
-
-        console.log(id)
+        const id = request.params     
 
         database.select().table('oferta').where('id', id.id).join('estabelecimento', {'estabelecimento.id_estabelecimento': 'oferta.estabelecimento_id'}).then( data => {  
 
+            
             response.json(data)
 
-            console.log(data)
+            var atualizaContagem = data[0].qtd_visualizacao + 1
+
+            
+
+            database.table('oferta').where('id', id.id).update({'qtd_visualizacao': atualizaContagem}, ['id', 'qtd_visualizacao']).then(data2 => {
+                // console.log(data2)
+            }).catch(error => {
+                console.log(error)
+            })
+
+            
+            // const atualizaContagem = data[0].qtd_visualizacao
+
+            // console.log( data[0].qtd_visualizacao)
 
         }).catch(error => {
             response.json(error)
