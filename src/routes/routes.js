@@ -10,4 +10,6 @@ router.get('/ofertas', OfertaController.listaOferta)
 
 router.get('/ofertas/:id', OfertaController.listaOfertaUnica)
 
+router.get('/ofetras/atualizaCompartilhado/:id', OfertaController.atualizaCompartilhamento)
+
 module.exports = router

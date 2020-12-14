@@ -23,9 +23,7 @@ class OfertaController{
             
             response.json(data)
 
-            var atualizaContagem = data[0].qtd_visualizacao + 1
-
-            
+            var atualizaContagem = data[0].qtd_visualizacao + 1            
 
             database.table('oferta').where('id', id.id).update({'qtd_visualizacao': atualizaContagem}, ['id', 'qtd_visualizacao']).then(data2 => {
                 // console.log(data2)
@@ -33,16 +31,34 @@ class OfertaController{
                 console.log(error)
             })
 
-            
-            // const atualizaContagem = data[0].qtd_visualizacao
-
-            // console.log( data[0].qtd_visualizacao)
-
         }).catch(error => {
             response.json(error)
             console.log(error)
         })
 
+    }
+
+    atualizaCompartilhamento(request, response){
+
+        const id = request.params     
+
+        database.select().table('oferta').where('id', id.id).then( data => {  
+
+            
+            response.json(data)
+
+            var atualizaContagem = data[0].qtd_compartilhado + 1            
+
+            database.table('oferta').where('id', id.id).update({'qtd_compartilhado': atualizaContagem}, ['id', 'qtd_compartilhado']).then(data2 => {
+                // console.log(data2)
+            }).catch(error => {
+                console.log(error)
+            })
+
+        }).catch(error => {
+            response.json(error)
+            console.log(error)
+        })
     }
 
 
