@@ -4,15 +4,16 @@ const database = require("../database/connection")
 class DenunciaController{
 
     novaDenuncia(request, response){
-        const {tipo, comentario, status, data_denuncia, oferta_id, estabelecimento_id} = request.body
+        const {tipo, comentario, status, oferta_id, estabelecimento_id} = request.body
 
-        console.log(tipo, comentario, status, data_denuncia, oferta_id, estabelecimento_id)
+        // console.log(tipo, comentario, status, oferta_id, estabelecimento_id)
+        console.log(request.body);
 
-        database.insert({tipo, comentario, status, data_denuncia}).table("denuncia").then(data => {
+        database.insert({tipo, comentario, status, oferta_id, estabelecimento_id}).table("denuncia").then(data => {
             console.log(data);
             response.json({message: "Denuncia feita com sucesso!"})
         }).catch(err => {
-            console.log(err )
+           response.json({error: err})
         })
 
     }

@@ -18,15 +18,13 @@ class OfertaController{
             
         const id = request.params     
 
-        database.select().table('oferta').where('id', id.id).join('estabelecimento', {'estabelecimento.id_estabelecimento': 'oferta.estabelecimento_id'}).then( data => {  
-
+        database.select().table('oferta').where('id', id.id).join('estabelecimento', {'estabelecimento.id_estabelecimento' : 'oferta.estabelecimento_id'}).then( data => {
             
-            response.json(data)
+            response.json(data);
 
             var atualizaContagem = data[0].qtd_visualizacao + 1            
 
             database.table('oferta').where('id', id.id).update({'qtd_visualizacao': atualizaContagem}, ['id', 'qtd_visualizacao']).then(data2 => {
-                // console.log(data2)
             }).catch(error => {
                 console.log(error)
             })
@@ -42,8 +40,7 @@ class OfertaController{
 
         const id = request.params     
 
-        database.select().table('oferta').where('id', id.id).then( data => {  
-
+        database.select().table('oferta').where('id', id.id).then( data => {
             
             response.json(data)
 
