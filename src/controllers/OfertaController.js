@@ -1,6 +1,5 @@
 const database = require("../database/connection")
 
-
 class OfertaController{
 
     listaOferta(request, response){
@@ -47,7 +46,6 @@ class OfertaController{
             var atualizaContagem = data[0].qtd_compartilhado + 1            
 
             database.table('oferta').where('id', id.id).update({'qtd_compartilhado': atualizaContagem}, ['id', 'qtd_compartilhado']).then(data2 => {
-                // console.log(data2)
             }).catch(error => {
                 console.log(error)
             })
@@ -56,12 +54,7 @@ class OfertaController{
             response.json(error)
             console.log(error)
         })
-    }
-
-
-    
-
-    
+    }    
 
 }
 
